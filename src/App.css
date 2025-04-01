@@ -1,38 +1,98 @@
-.App {
-  text-align: center;
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  background-color: #f8f9fa;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+/* Loading Screen */
+.loading-screen {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: #4b6cb7;
+  background-color: #f8f9fa;
 }
 
-.App-link {
-  color: #61dafb;
+/* Custom Button Styles */
+.btn-primary {
+  background: linear-gradient(45deg, #4b6cb7, #182848);
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(75, 108, 183, 0.3);
 }
 
-@keyframes App-logo-spin {
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(75, 108, 183, 0.4);
+  background: linear-gradient(45deg, #4b6cb7, #182848);
+}
+
+/* Custom Form Styles */
+.form-control:focus {
+  border-color: #4b6cb7;
+  box-shadow: 0 0 0 0.25rem rgba(75, 108, 183, 0.25);
+}
+
+/* Custom Card Styles */
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* Custom Alert Styles */
+.alert-danger {
+  background-color: #fff5f5;
+  color: #e53e3e;
+  border-color: #fed7d7;
+  border-radius: 10px;
+}
+
+/* Custom Progress Bar Styles */
+.progress-bar {
+  background: linear-gradient(45deg, #4b6cb7, #182848);
+}
+
+/* Animations */
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
