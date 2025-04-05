@@ -47,7 +47,7 @@ const Dashboard = ({ user }) => {
     setProgress({ state: 'PENDING', status: 'Task queued' });
     
     try {
-      const response = await axios.post('${process.env.REACT_APP_API_URL}/generate_clip', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/generate_clip`, {
         topic,
         num_scenes: parseInt(numScenes),
       });
