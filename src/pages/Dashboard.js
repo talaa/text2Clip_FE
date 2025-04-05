@@ -26,7 +26,7 @@ const Dashboard = ({ user }) => {
     if (taskId) {
       interval = setInterval(async () => {
         try {
-          const response = await axios.get(`http://localhost:5000/progress/${taskId}`);
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/progress/${taskId}`);// http://localhost:5000/progress/${taskId}
           setProgress(response.data);
           if (response.data.state === 'SUCCESS' || response.data.state === 'FAILURE') {
             clearInterval(interval);
@@ -47,7 +47,7 @@ const Dashboard = ({ user }) => {
     setProgress({ state: 'PENDING', status: 'Task queued' });
     
     try {
-      const response = await axios.post('http://localhost:5000/generate_clip', {
+      const response = await axios.post('${process.env.REACT_APP_API_URL}/generate_clip', {
         topic,
         num_scenes: parseInt(numScenes),
       });
@@ -73,7 +73,7 @@ const Dashboard = ({ user }) => {
 
   const handleDownload = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/download/${taskId}`, { responseType: 'blob' });
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/download/${taskId}`, { responseType: 'blob' });
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
@@ -216,7 +216,61 @@ const Dashboard = ({ user }) => {
         
         <Row className="mt-5">
           <Col>
-            <h2 className="recent-videos-title">Your Recent Videos</h2>
+            <h2 className="recent-videos-title">Share with Social Media</h2>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <div className="social-share-buttons d-flex justify-content-center">
+              <Button
+                variant="primary"
+                className="me-2"
+                onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')}
+              >
+                <i className="bi bi-facebook me-2"></i> Facebook
+              </Button>
+              <Button
+                variant="info"
+                className="me-2"
+                onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check+out+this+video!`, '_blank')}
+              >
+                <i className="bi bi-twitter me-2"></i> Twitter
+              </Button>
+              <Button
+                variant="primary"
+                className="me-2"
+                onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank')}
+              >
+                <i className="bi bi-linkedin me-2"></i> LinkedIn
+              </Button>
+              <Button
+                variant="success"
+                className="me-2"
+                onClick={() => window.open(`https://api.whatsapp.com/send?text=Check+out+this+video!+${encodeURIComponent(window.location.href)}`, '_blank')}
+              >
+                <i className="bi bi-whatsapp me-2"></i> WhatsApp
+              </Button>
+              <Button
+                variant="danger"
+                className="me-2"
+                onClick={() => window.open(`https://www.instagram.com/`, '_blank')}
+              >
+                <i className="bi bi-instagram me-2"></i> Instagram
+              </Button>
+              <Button
+                variant="dark"
+                onClick={() => window.open(`https://www.tiktok.com/`, '_blank')}
+              >
+                <i className="bi bi-tiktok me-2"></i> TikTok
+              </Button>
+            </div>
+          </Col>
+        </Row>
+
+        <Row className="mt-5">
+          <Col>
+            <h2 className="recent-videos-title">Your Recent Videos(Coming soon)</h2>
           </Col>
         </Row>
         
@@ -253,6 +307,8 @@ const Dashboard = ({ user }) => {
             </Col>
           ))}
         </Row>
+
+        
       </Container>
     </div>
   );
