@@ -230,7 +230,7 @@ const Dashboard = ({ user }) => {
 
         <Row>
           <Col>
-            <div className="social-share-buttons d-flex justify-content-center">
+            <div className="social-share-buttons d-flex flex-wrap justify-content-center">
               <Button
                 variant="primary"
                 className="me-2"
