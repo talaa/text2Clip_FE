@@ -45,7 +45,15 @@ const Dashboard = ({ user }) => {
     setError(null);
     setLoading(true);
     setProgress({ state: 'PENDING', status: 'Task queued' });
-    
+    // Google Analytics event for "Generate Clip"
+    if (window.gtag) {
+      window.gtag('event', 'generate_clip', {
+        event_category: 'Video Generation',
+        event_label: topic,
+        value: numScenes,
+      });
+    }
+
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/generate_clip`, {
         topic,
